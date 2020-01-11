@@ -26,30 +26,26 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-88c5be0e4cfb0d6c319f.js"
+    "url": "webpack-runtime-7e0f69b700a0ebbac1c8.js"
   },
   {
-    "url": "styles.a0aff16ffd9e0bf8a8c7.css"
+    "url": "styles.e3108d7e59f472ee143f.css"
   },
   {
     "url": "styles-bd188fbe3915cdf4f66d.js"
   },
   {
-    "url": "commons-80712135db3764f96e0f.js"
+    "url": "commons-3bb446699b3041c5dccb.js"
   },
   {
-    "url": "app-dfe22d3c7875dee19823.js"
+    "url": "app-48e9cd6153ff95e5aa36.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-5a6b888a779cb927bc22.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "4e7cdf7f12c6b5782b063a4a1e90dc55"
-  },
-  {
-    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "c355c8040c47a63bfb3360e4b7cb6553"
+    "revision": "926d1f9ea0c0b9f12555d38709024a2c"
   },
   {
     "url": "manifest.webmanifest",
@@ -72,12 +68,12 @@ const { NavigationRoute } = workbox.routing
 
 const navigationRoute = new NavigationRoute(async ({ event }) => {
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^/kenmikanmi.github.io`), ``)
+  pathname = pathname.replace(new RegExp(`^`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/kenmikanmi.github.io/app-dfe22d3c7875dee19823.js`))) {
+  if (!resources || !(await caches.match(`/app-48e9cd6153ff95e5aa36.js`))) {
     return await fetch(event.request)
   }
 
@@ -90,7 +86,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/kenmikanmi.github.io/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
   return await caches.match(offlineShell)
 })
 
